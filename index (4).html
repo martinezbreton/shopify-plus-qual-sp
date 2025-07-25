@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario de Calificación para Socios de Shopify Plus</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #96bf48;
+        }
+        .header h1 {
+            color: #004c3f;
+            margin: 0;
+            font-size: 24px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #96bf48;
+        }
+        .question h3 {
+            color: #004c3f;
+            margin: 0 0 15px 0;
+            font-size: 16px;
+        }
+        .option {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .option:hover {
+            background: #e9ecef;
+        }
+        .option input {
+            margin-right: 10px;
+        }
+        .points {
+            font-weight: bold;
+            color: #96bf48;
+            font-size: 12px;
+        }
+        .auto-qualify {
+            color: #d63384;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .scoring {
+            margin-top: 30px;
+            padding: 20px;
+            background: #004c3f;
+            color: white;
+            border-radius: 8px;
+        }
+        .scoring h3 {
+            margin: 0 0 15px 0;
+            color: #96bf48;
+        }
+        .score-range {
+            margin: 8px 0;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        .prospect-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e7f3ff;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+        }
+        .prospect-info h4 {
+            margin: 0 0 10px 0;
+            color: #0066cc;
+        }
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .form-row input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏆 Cuestionario de Calificación para Socios de Shopify Plus</h1>
+            <p class="subtitle">Herramienta de Calificación de Prospectos para Ferias Comerciales</p>
+        </div>
+
+        <div class="prospect-info">
+            <h4>Información del Prospecto</h4>
+            <div class="form-row">
+                <input type="text" placeholder="Nombre de la Empresa" id="companyName">
+                <input type="text" placeholder="Nombre del Contacto" id="contactName">
+            </div>
+            <div class="form-row">
+                <input type="email" placeholder="Correo Electrónico" id="email">
+                <input type="text" placeholder="Número Telefónico" id="phone">
+            </div>
+        </div>
+
+        <form id="qualifyingForm">
+            <div class="question">
+                <h3>1. ¿Cuál es tu plataforma de ecommerce actual?</h3>
+                <div class="option">
+                    <input type="radio" name="platform" value="15" id="vtex">
+                    <label for="vtex">VTEX <span class="auto-qualify">🎯 CALIFICA AUTOMÁTICAMENTE</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="platform" value="12" id="salesforce">
+                    <label for="salesforce">Salesforce Commerce Cloud <span class="points">(12 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="platform" value="10" id="magento">
+                    <label for="magento">Magento/Adobe Commerce <span class="points">(10 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="platform" value="8" id="bigcommerce">
+                    <label for="bigcommerce">BigCommerce <span class="points">(8 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="platform" value="4" id="other">
+                    <label for="other">Otra plataforma <span class="points">(4 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="platform" value="2" id="woocommerce">
+                    <label for="woocommerce">WooCommerce <span class="points">(2 pts)</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>2. ¿Cuál es tu Valor Bruto de Mercancía (GMV) anual en línea?</h3>
+                <div class="option">
+                    <input type="radio" name="gmv" value="15" id="gmv15">
+                    <label for="gmv15">$5M - $10M USD anuales <span class="points">(15 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="gmv" value="12" id="gmv12">
+                    <label for="gmv12">$2M - $5M USD anuales <span class="points">(12 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="gmv" value="10" id="gmv10">
+                    <label for="gmv10">$1M - $2M USD anuales <span class="points">(10 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="gmv" value="6" id="gmv6">
+                    <label for="gmv6">$500K - $1M USD anuales <span class="points">(6 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="gmv" value="2" id="gmv2">
+                    <label for="gmv2">Menos de $500K USD anuales <span class="points">(2 pts)</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>3. ¿Cuál es tu sector empresarial principal?</h3>
+                <div class="option">
+                    <input type="radio" name="vertical" value="15" id="fashion">
+                    <label for="fashion">Moda/Ropa <span class="auto-qualify">🎯 CALIFICA AUTOMÁTICAMENTE</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="vertical" value="10" id="beauty">
+                    <label for="beauty">Belleza/Cosméticos <span class="points">(10 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="vertical" value="8" id="luxury">
+                    <label for="luxury">Productos de Lujo <span class="points">(8 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="vertical" value="6" id="health">
+                    <label for="health">Salud/Bienestar <span class="points">(6 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="vertical" value="4" id="electronics">
+                    <label for="electronics">Electrónicos/Tecnología <span class="points">(4 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="vertical" value="2" id="other-vertical">
+                    <label for="other-vertical">Otro sector <span class="points">(2 pts)</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>4. ¿Vendes a otras empresas (B2B)?</h3>
+                <div class="option">
+                    <input type="radio" name="b2b" value="12" id="b2b-primary">
+                    <label for="b2b-primary">Sí, B2B es nuestro modelo principal <span class="points">(12 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="b2b" value="10" id="b2b-significant">
+                    <label for="b2b-significant">Sí, B2B es una parte significativa (30%+) <span class="points">(10 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="b2b" value="6" id="b2b-some">
+                    <label for="b2b-some">Sí, algunas ventas B2B (10-30%) <span class="points">(6 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="b2b" value="2" id="b2b-minimal">
+                    <label for="b2b-minimal">B2B mínimo (menos del 10%) <span class="points">(2 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="b2b" value="0" id="b2b-none">
+                    <label for="b2b-none">No, solo B2C <span class="points">(0 pts)</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>5. ¿Tienes tiendas físicas?</h3>
+                <div class="option">
+                    <input type="radio" name="pos" value="15" id="pos-square">
+                    <label for="pos-square">Sí, usando Square POS <span class="auto-qualify">🎯 CALIFICA AUTOMÁTICAMENTE</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="pos" value="15" id="pos-clover">
+                    <label for="pos-clover">Sí, usando Clover POS <span class="auto-qualify">🎯 CALIFICA AUTOMÁTICAMENTE</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="pos" value="15" id="pos-other">
+                    <label for="pos-other">Sí, usando otro sistema POS <span class="auto-qualify">🎯 CALIFICA AUTOMÁTICAMENTE</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="pos" value="6" id="pos-shopify">
+                    <label for="pos-shopify">Sí, usando Shopify POS <span class="points">(6 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="pos" value="8" id="pos-planning">
+                    <label for="pos-planning">Planeando abrir tiendas pronto <span class="points">(8 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="pos" value="2" id="pos-none">
+                    <label for="pos-none">No tengo tiendas físicas <span class="points">(2 pts)</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>6. ¿En cuántos mercados/países vendes actualmente?</h3>
+                <div class="option">
+                    <input type="radio" name="markets" value="10" id="global">
+                    <label for="global">10+ mercados internacionales <span class="points">(10 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="markets" value="8" id="multi">
+                    <label for="multi">3-9 mercados internacionales <span class="points">(8 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="markets" value="6" id="expanding">
+                    <label for="expanding">2-3 mercados, planeando expansión <span class="points">(6 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="markets" value="2" id="domestic">
+                    <label for="domestic">Solo un mercado <span class="points">(2 pts)</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>7. ¿Cuál es el tamaño de tu equipo de ecommerce/digital?</h3>
+                <div class="option">
+                    <input type="radio" name="team" value="10" id="large-team">
+                    <label for="large-team">10+ miembros dedicados al ecommerce <span class="points">(10 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="team" value="8" id="medium-team">
+                    <label for="medium-team">5-9 miembros dedicados al ecommerce <span class="points">(8 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="team" value="6" id="small-team">
+                    <label for="small-team">2-4 miembros dedicados al ecommerce <span class="points">(6 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="team" value="2" id="solo">
+                    <label for="solo">1 persona o responsabilidades compartidas <span class="points">(2 pts)</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>8. ¿Cuál es tu mayor desafío actual con la plataforma?</h3>
+                <div class="option">
+                    <input type="radio" name="challenge" value="10" id="performance">
+                    <label for="performance">Problemas de rendimiento/velocidad del sitio <span class="points">(10 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="challenge" value="8" id="customization">
+                    <label for="customization">Personalización/flexibilidad limitada <span class="points">(8 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="challenge" value="6" id="integration">
+                    <label for="integration">Dificultades de integración <span class="points">(6 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="challenge" value="4" id="scaling">
+                    <label for="scaling">Escalabilidad/manejo de tráfico <span class="points">(4 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="challenge" value="2" id="cost">
+                    <label for="cost">Preocupaciones de costo <span class="points">(2 pts)</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>9. ¿Cuál es tu trayectoria de crecimiento?</h3>
+                <div class="option">
+                    <input type="radio" name="growth" value="10" id="high-growth">
+                    <label for="high-growth">50%+ crecimiento anual <span class="points">(10 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="growth" value="8" id="strong-growth">
+                    <label for="strong-growth">25-50% crecimiento anual <span class="points">(8 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="growth" value="6" id="steady-growth">
+                    <label for="steady-growth">10-25% crecimiento anual <span class="points">(6 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="growth" value="4" id="moderate-growth">
+                    <label for="moderate-growth">5-10% crecimiento anual <span class="points">(4 pts)</span></label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="growth" value="2" id="stable">
+                    <label for="stable">Crecimiento estable/mínimo <span class="points">(2 pts)</span></label>
+                </div>
+            </div>
+
+            <button type="button" onclick="calculateScore()" style="width: 100%; padding: 15px; background: #96bf48; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                Calcular Puntaje de Calificación
+            </button>
+        </form>
+
+        <div id="result" style="display: none; margin-top: 30px;"></div>
+
+        <div class="scoring">
+            <h3>🎯 Guía de Puntuación</h3>
+            <div class="score-range">
+                <strong>CALIFICA AUTOMÁTICAMENTE:</strong> Usuarios de VTEX, sector Moda, o sistema POS no-Shopify = Prospecto inmediato
+            </div>
+            <div class="score-range">
+                <strong>70+ Puntos:</strong> 🔥 PROSPECTO CALIENTE - Alta prioridad, seguimiento inmediato
+            </div>
+            <div class="score-range">
+                <strong>50-69 Puntos:</strong> 🟡 PROSPECTO TIBIO - Buen potencial, programar llamada de descubrimiento
+            </div>
+            <div class="score-range">
+                <strong>35-49 Puntos:</strong> 🔵 PROSPECTO FRÍO - Nutrir con contenido, seguimiento después
+            </div>
+            <div class="score-range">
+                <strong>Menos de 35 Puntos:</strong> ❄️ NO CALIFICA - Dirigir a Shopify estándar
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateScore() {
+            const form = document.getElementById('qualifyingForm');
+            const formData = new FormData(form);
+            let totalScore = 0;
+            let autoQualify = false;
+            let autoQualifyReason = '';
+
+            // Check for auto-qualify conditions
+            const platform = formData.get('platform');
+            const vertical = formData.get('vertical');
+            const pos = formData.get('pos');
+            
+            if (platform === '15') {
+                autoQualify = true;
+                autoQualifyReason = 'Plataforma VTEX';
+            } else if (vertical === '15') {
+                autoQualify = true;
+                autoQualifyReason = 'Sector Moda';
+            } else if (pos === '15') {
+                autoQualify = true;
+                autoQualifyReason = 'Sistema POS no-Shopify';
+            }
+
+            // Calculate total score
+            for (let value of formData.values()) {
+                totalScore += parseInt(value);
+            }
+
+            // Display result
+            const resultDiv = document.getElementById('result');
+            let resultHTML = '';
+            let priorityClass = '';
+            let actionSteps = '';
+
+            if (autoQualify) {
+                priorityClass = 'auto-qualify';
+                resultHTML = `
+                    <div style="background: #d63384; color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                        <h2 style="margin: 0; font-size: 24px;">🎯 CALIFICA AUTOMÁTICAMENTE</h2>
+                        <p style="margin: 10px 0 0 0; font-size: 18px;">${autoQualifyReason} = ¡Prospecto Caliente Inmediato!</p>
+                    </div>
+                `;
+                actionSteps = `
+                    <div style="background: #e7f3ff; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <h4 style="color: #0066cc; margin: 0 0 10px 0;">Próximos Pasos:</h4>
+                        <ul style="margin: 0; color: #333;">
+                            <li>Programar llamada de descubrimiento inmediata</li>
+                            <li>Conectar con equipo de ventas Plus en 24 horas</li>
+                            <li>Preparar demo de Plus y cronograma de migración</li>
+                            ${pos === '15' ? '<li>Destacar beneficios de comercio unificado</li>' : ''}
+                        </ul>
+                    </div>
+                `;
+            } else if (totalScore >= 70) {
+                priorityClass = 'hot';
+                resultHTML = `
+                    <div style="background: #dc3545; color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                        <h2 style="margin: 0; font-size: 24px;">🔥 PROSPECTO CALIENTE</h2>
+                        <p style="margin: 10px 0 0 0; font-size: 18px;">Puntaje: ${totalScore}/99 - Alta Prioridad</p>
+                    </div>
+                `;
+                actionSteps = `
+                    <div style="background: #f8d7da; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <h4 style="color: #721c24; margin: 0 0 10px 0;">Próximos Pasos:</h4>
+                        <ul style="margin: 0; color: #721c24;">
+                            <li>Seguimiento en 24 horas</li>
+                            <li>Programar demo de Plus</li>
+                            <li>Preparar análisis de ROI</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (totalScore >= 50) {
+                priorityClass = 'warm';
+                resultHTML = `
+                    <div style="background: #fd7e14; color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                        <h2 style="margin: 0; font-size: 24px;">🟡 PROSPECTO TIBIO</h2>
+                        <p style="margin: 10px 0 0 0; font-size: 18px;">Puntaje: ${totalScore}/99 - Buen Potencial</p>
+                    </div>
+                `;
+                actionSteps = `
+                    <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <h4 style="color: #856404; margin: 0 0 10px 0;">Próximos Pasos:</h4>
+                        <ul style="margin: 0; color: #856404;">
+                            <li>Programar llamada de descubrimiento en 1 semana</li>
+                            <li>Enviar recursos de Plus</li>
+                            <li>Calificar requerimientos técnicos</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (totalScore >= 35) {
+                priorityClass = 'cold';
+                resultHTML = `
+                    <div style="background: #0dcaf0; color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                        <h2 style="margin: 0; font-size: 24px;">🔵 PROSPECTO FRÍO</h2>
+                        <p style="margin: 10px 0 0 0; font-size: 18px;">Puntaje: ${totalScore}/99 - Requiere Nutrición</p>
+                    </div>
+                `;
+                actionSteps = `
+                    <div style="background: #cff4fc; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <h4 style="color: #055160; margin: 0 0 10px 0;">Próximos Pasos:</h4>
+                        <ul style="margin: 0; color: #055160;">
+                            <li>Agregar a campaña de nutrición</li>
+                            <li>Enviar contenido educativo</li>
+                            <li>Seguimiento en 3-6 meses</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                priorityClass = 'not-qualified';
+                resultHTML = `
+                    <div style="background: #6c757d; color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                        <h2 style="margin: 0; font-size: 24px;">❄️ NO CALIFICA</h2>
+                        <p style="margin: 10px 0 0 0; font-size: 18px;">Puntaje: ${totalScore}/99 - Dirigir a Shopify Estándar</p>
+                    </div>
+                `;
+                actionSteps = `
+                    <div style="background: #e2e3e5; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <h4 style="color: #383d41; margin: 0 0 10px 0;">Próximos Pasos:</h4>
+                        <ul style="margin: 0; color: #383d41;">
+                            <li>Dirigir a Shopify estándar</li>
+                            <li>Proporcionar recursos básicos</li>
+                            <li>Considerar para crecimiento futuro</li>
+                        </ul>
+                    </div>
+                `;
+            }
+
+            resultDiv.innerHTML = resultHTML + actionSteps;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
