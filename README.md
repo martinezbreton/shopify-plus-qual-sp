@@ -1,1 +1,0 @@
-# shopify-plus-qual-sp
